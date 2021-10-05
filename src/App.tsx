@@ -50,6 +50,15 @@ function App() {
             </div>
           </div>
         </label>
+        <label className="checkbox form__group text-label-regular">
+          <input className="checkbox__input" type="checkbox" value="true"/>
+          <span className="checkbox__box"></span>
+          <span>
+            Принимаю&nbsp;
+            <a className="link text-label-accent" href="/" target="_blank">условия</a>
+            &nbsp;использования
+          </span>
+        </label>
       </form>
     </div>
   )
