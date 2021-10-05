@@ -9,6 +9,11 @@ body {
   background-color: cornflowerblue;
 }
 
+button {
+  cursor: pointer;
+  border: none;
+}
+
 @font-face {
   font-family: "IBM Plex Sans";
   src: url(assets/fonts/IBMPlexSans-Bold.ttf) format("truetype");

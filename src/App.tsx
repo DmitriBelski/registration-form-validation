@@ -59,6 +59,7 @@ function App() {
             &nbsp;использования
           </span>
         </label>
+        <button className="button button--disabled text-button-regular text-button-disabled" type="submit">Зарегистрироваться</button>
       </form>
     </div>
   )

@@ -1,6 +1,50 @@
 @import './variables.scss';
 @import './typography.scss';
 
+.button {
+  padding: 16px;
+  background-color: $color-accent;
+  color: $color-accent-contrast;
+  border-radius: $default-border-radius;
+  box-shadow: $button-box-shadow;
+  @include default-transition(box-shadow);
+
+  &:hover {
+    box-shadow: $button-hover-box-shadow;
+  }
+
+  &:hover:focus {
+    outline: none;
+    box-shadow: $button-hover-box-shadow, $button-focus-border-shadow;
+  }
+
+  &:hover:active {
+    box-shadow: $button-active-box-shadow, $button-active-border-shadow;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: $button-active-box-shadow, $button-focus-border-shadow;
+  }
+
+  &:active {
+    box-shadow: $button-active-box-shadow, $button-active-border-shadow;
+  }
+
+  &--disabled {
+    background-color: $color-neutral-light;
+    box-shadow: $button-disable-box-shadow;
+    @include default-transition(box-shadow);
+
+    &:hover,
+    &:hover:active,
+    &:hover:focus,
+    &:focus {
+      box-shadow: $button-disable-box-shadow;
+    }
+  }
+}
+
 .input {
   box-sizing: border-box;
   padding: 16px 50px 15px 16px;
