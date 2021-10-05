@@ -13,6 +13,21 @@ function App() {
             </a>
           </span>
         </div>
+        <label className="input-group form__group" htmlFor="name">
+          <span className="input-group__label text-label-regular">Имя</span>
+          <input className="input-group__input input text-input" type="text" id="name" placeholder="Введите ваше имя" />
+          <span className="input-group__message text-danger" hidden>Введено не корректное значение</span>
+        </label>
+        <label className="input-group form__group" htmlFor="email">
+          <span className="input-group__label text-label-regular">Email</span>
+          <input className="input-group__input input text-input" type="email" id="email" placeholder="Введите ваш email" />
+          <span className="input-group__message text-danger">Введено не корректное значение</span>
+        </label>
+        <label className="input-group form__group" htmlFor="cell">
+          <span className="input-group__label text-label-regular">Номер телефона</span>
+          <input className="input-group__input input text-input" type="tel" id="cell" placeholder="Введите номер телефона" />
+          <span className="input-group__message text-danger">Введено не корректное значение</span>
+        </label>
       </form>
     </div>
   )

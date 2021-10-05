@@ -1,6 +1,25 @@
 @import './variables.scss';
 @import './typography.scss';
 
+.input {
+  box-sizing: border-box;
+  padding: 16px 50px 15px 16px;
+  background-color: $color-secondary-contrast;
+  border: none;
+  border-radius: $default-border-radius;
+  box-shadow: $input-regular-border-shadow, $input-box-shadow;
+
+  &:focus {
+    outline: none;
+    box-shadow: $input-focus-border-shadow, $input-box-shadow;
+    @include default-transition(box-shadow);
+  }
+
+  &::placeholder {
+    color: $color-accent-light;
+  }
+}
+
 .link {
   text-decoration: none;
   padding: 0 1px 2px 1px;

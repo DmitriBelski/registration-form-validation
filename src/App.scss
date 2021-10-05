@@ -20,6 +20,10 @@
   &__header {
     margin-bottom: 58px;
   }
+
+  &__group {
+    margin-bottom: 34px;
+  }
 }
 
 .header {
@@ -33,5 +37,20 @@
 
   &__subtitle-link {
     margin-left: 6px;
+  }
+}
+
+.input-group {
+  display: -ms-grid;
+  display: grid;
+  position: relative;
+
+  &__label {
+    margin-bottom: 7px;
+  }
+
+  &__message {
+    position: absolute;
+    bottom: -26px;
   }
 }
