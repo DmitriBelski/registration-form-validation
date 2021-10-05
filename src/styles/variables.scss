@@ -1,0 +1,55 @@
+/* Colors */
+$color-accent: #0880ae;
+$color-accent-light: #7c9cbf;
+$color-accent-contrast: #ebf4f8;
+
+$color-secondary: #2c2738;
+$color-secondary-86: #2c2738db;
+$color-secondary-50: #2c273880;
+$color-secondary-16: #2c273829;
+$color-secondary-08: #2c273814;
+$color-secondary-04: #2c27380a;
+$color-secondary-02: #2c273805;
+$color-secondary-contrast: #ffffff;
+
+$color-neutral-dark: #756f86;
+$color-neutral-light: #dbe2ea;
+
+$color-danger: #ff7171;
+
+/* Transitions */
+@mixin default-transition($property...) {
+  transition-property: $property;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+/* Border radiuses */
+$small-border-radius: 4px;
+$default-border-radius: 6px;
+$big-border-radius: 24px;
+
+/* Border shadows */
+$input-regular-border-shadow: inset 0 0 0 1px $color-neutral-light;
+$input-focus-border-shadow: inset 0 0 0 2px $color-accent;
+$button-active-border-shadow: inset 0 0 0 2px $color-secondary-86;
+$button-focus-border-shadow: inset 0 0 0 2px $color-danger;
+$link-focus-border-shadow: 0 0 0 2px $color-accent;
+
+/* Box shadows elevations */
+$elevation-xs: 0px 2px 4px;
+$elevation-s: 0px 4px 8px;
+$elevation-m: 0px 12px 24px;
+$elevation-l-extra: 0px 20px 20px;
+$elevation-l: 0px 24px 48px;
+$elevation-xl: 0px 32px 64px;
+
+/* Box shadows */
+$button-box-shadow: $elevation-xs $color-secondary-08, $elevation-s $color-secondary-08;
+$button-hover-box-shadow: $elevation-m $color-secondary-08, $elevation-l $color-secondary-16;
+$button-active-box-shadow: $elevation-s $color-secondary-08;
+$button-disable-box-shadow: $elevation-s $color-secondary-08;
+$input-box-shadow: $elevation-s $color-secondary-04;
+$dropdown-box-shadow: $elevation-s $color-secondary-04, $elevation-l-extra $color-secondary-04;
+$paper-box-shadow: $elevation-m $color-secondary-02, $elevation-xl $color-secondary-04;
