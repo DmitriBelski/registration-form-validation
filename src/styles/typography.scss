@@ -1,0 +1,91 @@
+@import './variables.scss';
+
+%title {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 44px;
+}
+
+%subtitle {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+%button-label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+%input {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+%semantic {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.text-title-regular {
+  @extend %title;
+  color: $color-secondary;
+}
+
+.text-subtitle-regular {
+  @extend %subtitle;
+  color: $color-secondary;
+}
+
+.text-subtitle-accent {
+  @extend %subtitle;
+  color: $color-accent;
+}
+
+.text-button-regular {
+  @extend %button-label;
+  color: $color-accent-contrast;
+}
+
+.text-button-disabled {
+  @extend %button-label;
+  color: $color-secondary-50;
+}
+
+.text-label-regular {
+  @extend %button-label;
+  color: $color-neutral-dark;
+}
+
+.text-label-accent {
+  @extend %button-label;
+  color: $color-accent;
+}
+
+.text-placeholder {
+  @extend %input;
+  color: $color-accent-light;
+}
+
+.text-input {
+  @extend %input;
+  color: $color-secondary;
+}
+
+.text-select {
+  @extend %input;
+  color: $color-neutral-dark;
+}
+
+.text-danger {
+  @extend %semantic;
+  color: $color-danger;
+}
