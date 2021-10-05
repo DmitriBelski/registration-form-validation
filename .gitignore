@@ -24,3 +24,6 @@ yarn-error.log*
 
 # vscode
 /.vscode
+
+# react-app-env.d.ts
+/src/react-app-env.d.ts
