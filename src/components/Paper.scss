@@ -2,8 +2,10 @@
 
 .paper {
   width: 460px;
-  margin: 50vh auto;
-  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: $big-border-radius;
   box-shadow: $paper-box-shadow;
   background-color: $color-secondary-contrast;
