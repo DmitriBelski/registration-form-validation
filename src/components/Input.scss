@@ -1,0 +1,16 @@
+@import 'styles/variables.scss';
+
+.input-group {
+  display: -ms-grid;
+  display: grid;
+  position: relative;
+
+  &__label {
+    margin-bottom: 7px;
+  }
+
+  &__message {
+    position: absolute;
+    bottom: -26px;
+  }
+}

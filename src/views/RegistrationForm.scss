@@ -1,0 +1,28 @@
+@import 'styles/variables.scss';
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    margin-bottom: 58px;
+  }
+
+  &__group {
+    margin-bottom: 34px;
+  }
+}
+
+.header {
+  &__title {
+    margin: 0 0 8px 0;
+  }
+
+  &__subtitle {
+    margin: 0;
+  }
+
+  &__subtitle-link {
+    margin-left: 6px;
+  }
+}
