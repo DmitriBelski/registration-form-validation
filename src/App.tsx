@@ -1,4 +1,3 @@
-import 'App.scss'
 import { Paper } from 'components/Paper'
 import { RegistrationForm } from 'views/RegistrationForm'
 

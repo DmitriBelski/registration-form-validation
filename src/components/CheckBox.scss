@@ -1,0 +1,37 @@
+@import 'styles/variables.scss';
+
+.checkbox {
+  $self: &;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0 5px 0;
+  cursor: pointer;
+
+  &__input {
+    position: absolute;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  &__box {
+    width: 28px;
+    height: 28px;
+    background-color: $color-secondary-contrast;
+    box-shadow: $input-box-shadow, $input-regular-border-shadow;
+    border-radius: $small-border-radius;
+    background: url(../assets/images/checked.svg) center center no-repeat;
+    background-size: 0px 0px;
+
+    #{$self}__input:focus + & {
+      box-shadow: $input-box-shadow, $input-focus-border-shadow;
+      @include default-transition(box-shadow);
+    }
+
+    #{$self}__input:checked + & {
+      background-size: 16px 12px;
+      @include default-transition(background-size);
+    }
+  }
+}

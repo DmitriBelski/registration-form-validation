@@ -8,6 +8,7 @@ interface InputProps {
   placeholder?: string;
   validateMessage?: string;
   requiredMessage?: string;
+  children?: React.ReactNode;
 }
 
 const Input: React.FC<InputProps> = (props) => {
@@ -23,6 +24,7 @@ const Input: React.FC<InputProps> = (props) => {
       <span className="input-group__message text-danger" hidden>
         {props.validateMessage}
       </span>
+      {props.children}
     </label>
   )
 }

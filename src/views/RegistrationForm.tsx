@@ -1,6 +1,8 @@
 import * as React from 'react'
 import './RegistrationForm.scss'
 import { Input } from 'components/Input'
+import { Select } from 'components/Select'
+import { CheckBox } from 'components/CheckBox'
 
 function RegistrationForm() {
   return (
@@ -35,37 +37,18 @@ function RegistrationForm() {
         placeholder="Введите номер телефона"
         validateMessage="Введено не корректное значение"
       />
-      <label className="input-group form__group" htmlFor="language">
-        <span className="input-group__label text-label-regular">Язык</span>
-        <input className="input-group__input input text-input" type="text" id="language" placeholder="Язык"/>
-        <span className="input-group__message text-danger">Выберите язык</span>
-        <div className="select select--open">
-          <div className="select__dropdown">
-            <ul className="select__dropdown-list">
-              <li className="select-option select-option--highlighted text-select">Русский</li>
-              <li className="select-option text-select">Английский</li>
-              <li className="select-option text-select">Китайский</li>
-              <li className="select-option text-select">Испанский</li>
-              <li className="select-option text-select">Испанский</li>
-              <li className="select-option text-select">Испанский</li>
-              <li className="select-option select-option--highlighted text-select">Испанский</li>
-              <li className="select-option text-select">Испанский</li>
-              <li className="select-option text-select">Испанский</li>
-              <li className="select-option select-option--highlighted text-select">Испанский</li>
-              <li className="select-option select-option--selected text-select">Испанский</li>
-            </ul>
-          </div>
-        </div>
-      </label>
-      <label className="checkbox form__group text-label-regular">
-        <input className="checkbox__input" type="checkbox" value="true"/>
-        <span className="checkbox__box"></span>
-        <span>
-          Принимаю&nbsp;
-          <a className="link text-label-accent" href="/" target="_blank">условия</a>
-          &nbsp;использования
-        </span>
-      </label>
+      <Select
+        label="Язык"
+        inputType="text"
+        placeholder="Язык"
+        validateMessage="Выберите язык"
+      >
+      </Select>
+      <CheckBox>
+        Принимаю&nbsp;
+        <a className="link text-label-accent" href="/" target="_blank">условия</a>
+        &nbsp;использования
+      </CheckBox>
       <button className="button button--disabled text-button-regular text-button-disabled" type="submit">Зарегистрироваться</button>
     </form>
   )
