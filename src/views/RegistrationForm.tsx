@@ -24,9 +24,18 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
       language: '',
       agreement: false
     }
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this)
+  }
+
+  handleCheckboxChange() {
+    this.setState((prevState) => {
+      const agreement = !prevState.agreement
+      return { agreement }
+    })
   }
 
   /* @Rule(state.field, message) */
+  @Required('agreement', '')
   @Name('name', 'Введено не корректное значение для имени')
   @Required('name', 'Поле имя не может быть пустым')
   @Email('email', 'Введено не корректное значение для email')
@@ -90,7 +99,9 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           validateMessage="Выберите язык"
         >
         </Select>
-        <CheckBox>
+        <CheckBox
+          onInputChange={this.handleCheckboxChange}
+        >
           Принимаю&nbsp;
           <a className="link text-label-accent" href="/" target="_blank">условия</a>
           &nbsp;использования
