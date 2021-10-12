@@ -4,6 +4,7 @@ import { Select } from 'components/Select'
 import { CheckBox } from 'components/CheckBox'
 import { Input } from 'components/Input'
 import { Name, Email, Phone, Required, validateMessages } from 'validation/validation'
+import { classnames } from 'utils/classnames'
 
 interface RegistrationFormState {
   name: string,
@@ -34,6 +35,14 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
   @Required('phone', 'Поле номер телефона не может быть пустым')
   render() {
     const messages = validateMessages(this)
+    const valid = !messages
+
+    const buttonClass = classnames({
+      button: true,
+      'button--disabled': Boolean(!valid),
+      'text-button-regular': Boolean(valid),
+      'text-button-disabled': Boolean(!valid)
+    })
 
     return (
       <form className="form">
@@ -86,7 +95,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           <a className="link text-label-accent" href="/" target="_blank">условия</a>
           &nbsp;использования
         </CheckBox>
-      <button className="button button--disabled text-button-regular text-button-disabled" type="submit">Зарегистрироваться</button>
+        <button className={buttonClass} type="submit">Зарегистрироваться</button>
       </form>
     )
   }
