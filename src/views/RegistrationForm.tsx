@@ -5,6 +5,7 @@ import { CheckBox } from 'components/CheckBox'
 import { Input } from 'components/Input'
 import { Name, Email, Phone, Required, validateMessages } from 'validation/validation'
 import { classnames } from 'utils/classnames'
+import { Bind } from 'utils/bind'
 
 interface RegistrationFormState {
   name: string,
@@ -24,9 +25,9 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
       language: '',
       agreement: false
     }
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this)
   }
 
+  @Bind
   handleCheckboxChange() {
     this.setState((prevState) => {
       const agreement = !prevState.agreement
