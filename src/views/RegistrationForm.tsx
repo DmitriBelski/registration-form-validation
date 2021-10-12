@@ -3,6 +3,7 @@ import './RegistrationForm.scss'
 import { Select } from 'components/Select'
 import { CheckBox } from 'components/CheckBox'
 import { Input } from 'components/Input'
+import { Name, Email, Phone, Required, validateMessages } from 'validation/validation'
 
 interface RegistrationFormState {
   name: string,
@@ -24,7 +25,16 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
     }
   }
 
+  /* @Rule(state.field, message) */
+  @Name('name', 'Введено не корректное значение для имени')
+  @Required('name', 'Поле имя не может быть пустым')
+  @Email('email', 'Введено не корректное значение для email')
+  @Required('email', 'Поле email не может быть пустым')
+  @Phone('phone', 'Введено не корректное значение для номера телефона')
+  @Required('phone', 'Поле номер телефона не может быть пустым')
   render() {
+    const messages = validateMessages(this)
+
     return (
       <form className="form">
         <div className="header form__header">
@@ -41,7 +51,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           label="Имя"
           inputType="text"
           placeholder="Введите ваше имя"
-        validateMessage="Введено не корректное значение"
+          validateMessage={messages?.name}
           onInputChange={(event) => this.setState({ name: event.target.value })}
           value={this.state.name}
         />
@@ -50,7 +60,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           label="Email"
           inputType="email"
           placeholder="Введите ваш email"
-        validateMessage="Введено не корректное значение"
+          validateMessage={messages?.email}
           onInputChange={(event) => this.setState({ email: event.target.value })}
           value={this.state.email}
         />
@@ -59,7 +69,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           label="Номер телефона"
           inputType="tel"
           placeholder="Введите номер телефона"
-        validateMessage="Введено не корректное значение"
+          validateMessage={messages?.phone}
           onInputChange={(event) => this.setState({ phone: String(event.target.value) })}
           value={this.state.phone}
         />
