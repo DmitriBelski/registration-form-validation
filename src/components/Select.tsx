@@ -3,7 +3,7 @@ import { Input } from './Input'
 import './Select.scss'
 
 interface SelectProps {
-  htmlFor?: string;
+  name?: string;
   label?: string;
   inputType: string;
   placeholder?: string;
@@ -15,7 +15,7 @@ interface SelectProps {
 const Select: React.FC<SelectProps> = (props) => {
   return (
     <Input
-      htmlFor={props.htmlFor}
+      name={props.name}
       label={props.label}
       inputType={props.inputType}
       placeholder={props.placeholder}
