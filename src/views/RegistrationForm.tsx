@@ -3,7 +3,7 @@ import './RegistrationForm.scss'
 import { Select } from 'components/Select'
 import { CheckBox } from 'components/CheckBox'
 import { Input } from 'components/Input'
-import { Name, Email, Phone, Required, validateMessages } from 'validation/validation'
+import { Name, Email, Phone, Required, validationMessages } from 'validation/validation'
 import { classnames } from 'utils/classnames'
 import { Bind } from 'utils/bind'
 
@@ -35,7 +35,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
     })
   }
 
-  /* @Rule(state.field, message) */
+  /* @Rule(state.prop, message) */
   @Required('agreement', '')
   @Name('name', 'Введено не корректное значение для имени')
   @Required('name', 'Поле имя не может быть пустым')
@@ -44,14 +44,14 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
   @Phone('phone', 'Введено не корректное значение для номера телефона')
   @Required('phone', 'Поле номер телефона не может быть пустым')
   render() {
-    const messages = validateMessages(this)
+    const messages = validationMessages(this)
     const valid = !messages
 
     const buttonClass = classnames({
       button: true,
-      'button--disabled': Boolean(!valid),
-      'text-button-regular': Boolean(valid),
-      'text-button-disabled': Boolean(!valid)
+      'button--disabled': !valid,
+      'text-button-regular': valid,
+      'text-button-disabled': !valid
     })
 
     return (

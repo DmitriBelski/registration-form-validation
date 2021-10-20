@@ -2,8 +2,6 @@
 
 type RuleType = 'name' | 'email' | 'phone' | 'required'
 
-export type MessageConfig = {[K in keyof PropConfig]: string}
-
 type RuleConfig = {
   rule: RuleType,
   message: string
@@ -26,35 +24,6 @@ const Email = addRule('email')
 const Phone = addRule('phone')
 const Required = addRule('required')
 
-function validateMessages(target: any): MessageConfig | undefined {
-  let messages: ReturnType<typeof validateMessages>
-  const targetValidator = validators[target.constructor.name]
-  Object.keys(targetValidator).forEach(prop => {
-    targetValidator[prop].forEach(ruleConfig => {
-      if (!messages?.[prop]) {
-        let propIsValid = true
-        if (ruleConfig.rule === 'name') {
-          const re = /^[a-zA-ZЁёА-я -]*$/
-          propIsValid = re.test(String(target.state[prop]))
-        }
-        if (ruleConfig.rule === 'email') {
-          const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          propIsValid = re.test(String(target.state[prop]).toLowerCase())
-        }
-        if (ruleConfig.rule === 'phone') {
-          const re = /\+?\d([()-]?\d){10}/
-          propIsValid = re.test(String(target.state[prop]))
-        }
-        if (ruleConfig.rule === 'required') {
-          propIsValid = !!target.state[prop]
-        }
-        if (!propIsValid) messages = { ...messages, [prop]: ruleConfig.message }
-      }
-    })
-  })
-  return messages
-}
-
 function addRule(rule: RuleType) {
   return function(prop: string, message: string) {
     return function(target: any, _: string) {
@@ -70,10 +39,46 @@ function addRule(rule: RuleType) {
   }
 }
 
+type MessageConfig = {[K in keyof PropConfig]: string}
+
+function validationMessages(target: any): MessageConfig | undefined {
+  let messages: ReturnType<typeof validationMessages>
+  const targetValidator = validators[target.constructor.name]
+  Object.keys(targetValidator).forEach(prop => {
+    targetValidator[prop].forEach(ruleConfig => {
+      if (!messages?.[prop]) {
+        if (!isValid(target.state[prop], ruleConfig.rule)) {
+          messages = { ...messages, [prop]: ruleConfig.message }
+        }
+      }
+    })
+  })
+  return messages
+}
+
+function isValid(stateValue: any, rule: RuleType): boolean {
+  if (rule === 'name') {
+    const re = /^[a-zA-ZЁёА-я -]*$/
+    return re.test(String(stateValue))
+  }
+  if (rule === 'email') {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(String(stateValue).toLowerCase())
+  }
+  if (rule === 'phone') {
+    const re = /\+?\d([()-]?\d){10}/
+    return re.test(String(stateValue))
+  }
+  if (rule === 'required') {
+    return !!stateValue
+  }
+  return true
+}
+
 export {
   Name,
   Email,
   Phone,
   Required,
-  validateMessages
+  validationMessages
 }
