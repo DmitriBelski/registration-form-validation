@@ -6,6 +6,7 @@ import { Input } from 'components/Input'
 import { Name, Email, Phone, Required, validationMessages } from 'validation/validation'
 import { classnames } from 'utils/classnames'
 import { Bind } from 'utils/bind'
+import { languages } from 'utils/constant'
 import Option from 'components/Option'
 
 interface RegistrationFormState {
@@ -100,6 +101,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           placeholder="Язык"
           validateMessage="Выберите язык"
         >
+          {languages.map((language) => <Option key={language.code} value={language.value}>{language.value}</Option>)}
         </Select>
         <CheckBox
           onInputChange={this.handleCheckboxChange}
