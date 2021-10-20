@@ -45,6 +45,44 @@ const Select: React.FC<SelectProps> = (props) => {
     })
   }
 
+  const chooseOptionByIndex = (index: number) => {
+    const children = filterOptions(props.children)
+    const currentlyHighlightedChild = children.find((element, elementIndex) => elementIndex === index)
+
+    if (currentlyHighlightedChild) {
+      setIsOpen(false)
+      chooseOption(currentlyHighlightedChild.props.value)
+    }
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (isOpen) {
+      const childrenCount = React.Children.count(props.children)
+      switch (event.key) {
+        case 'Escape':
+          setIsOpen(false)
+          return
+        case 'ArrowDown':
+          setCurrentElementIndex(currentElementIndex + 1 >= childrenCount ? childrenCount - 1 : currentElementIndex + 1)
+          return
+        case 'ArrowUp':
+          setCurrentElementIndex(currentElementIndex - 1 < 0 ? 0 : currentElementIndex - 1)
+          return
+        case 'Enter':
+          event.preventDefault()
+          chooseOptionByIndex(currentElementIndex)
+          return
+        default:
+          return
+      }
+    }
+
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      setIsOpen(!isOpen)
+    }
+  }
+
   const dropdownClass = classnames({
     select: true,
     'select--open': isOpen
@@ -59,6 +97,7 @@ const Select: React.FC<SelectProps> = (props) => {
       placeholder={props.placeholder}
       validateMessage={props.validateMessage}
       onClick={() => setIsOpen(!isOpen)}
+      onKeyDown={handleKeyDown}
     >
       <div className={dropdownClass}>
         {props.children && (

@@ -11,6 +11,7 @@ interface InputProps {
   onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   children?: React.ReactNode;
   onClick?: () => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 class Input extends React.Component<InputProps> {
@@ -26,6 +27,7 @@ class Input extends React.Component<InputProps> {
           value={this.props.value}
           onChange={this.props.onInputChange}
           onClick={this.props.onClick}
+          onKeyDown={this.props.onKeyDown}
           readOnly={!this.props.onInputChange}
         />
         <span className="input-group__message text-danger" hidden={!this.props.validateMessage}>
