@@ -10,6 +10,7 @@ interface InputProps {
   value?: string;
   onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 class Input extends React.Component<InputProps> {
@@ -24,6 +25,7 @@ class Input extends React.Component<InputProps> {
           placeholder={this.props.placeholder}
           value={this.props.value}
           onChange={this.props.onInputChange}
+          onClick={this.props.onClick}
         />
         <span className="input-group__message text-danger" hidden={!this.props.validateMessage}>
           {this.props.validateMessage}
