@@ -23,6 +23,7 @@ const Select: React.FC<SelectProps> = (props) => {
   const [currentElementIndex, setCurrentElementIndex] = React.useState(0)
 
   const chooseOption = (value: string) => {
+    setIsOpen(false)
     props.onOptionClick(value)
   }
 
@@ -32,6 +33,7 @@ const Select: React.FC<SelectProps> = (props) => {
     return React.Children.map(children, (child, index) => {
       const additionalProps: Pick<OptionProps, 'onClick' | 'onHover' | 'isSelected' | 'isHighlighted'> = {
         onClick: (event) => {
+          event.preventDefault()
           chooseOption(child.props.value)
         },
         onHover: () => {
