@@ -39,6 +39,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
 
   /* @Rule(state.prop, message) */
   @Required('agreement', '')
+  @Required('language', 'Выберите язык')
   @Name('name', 'Введено не корректное значение для имени')
   @Required('name', 'Поле имя не может быть пустым')
   @Email('email', 'Введено не корректное значение для email')
@@ -98,7 +99,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           name="language"
           label="Язык"
           placeholder="Язык"
-          validateMessage="Выберите язык"
+          validateMessage={messages?.language}
           value={this.state.language ?? ''}
           onOptionClick={(language) => this.setState({ language })}
         >
