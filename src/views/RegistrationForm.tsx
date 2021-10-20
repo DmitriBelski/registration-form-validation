@@ -99,6 +99,8 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           label="Язык"
           placeholder="Язык"
           validateMessage="Выберите язык"
+          value={this.state.language ?? ''}
+          onOptionClick={(language) => this.setState({ language })}
         >
           {languages.map((language) => <Option key={language.code} value={language.value}>{language.value}</Option>)}
         </Select>
