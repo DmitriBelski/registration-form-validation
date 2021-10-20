@@ -66,7 +66,7 @@ function isValid(stateValue: any, rule: RuleType): boolean {
     return re.test(String(stateValue).toLowerCase())
   }
   if (rule === 'phone') {
-    const re = /\+?\d([()-]?\d){10}/
+    const re = /^\+?\d([()-]?\d){10}$/
     return re.test(String(stateValue))
   }
   if (rule === 'required') {
