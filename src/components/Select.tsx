@@ -6,7 +6,6 @@ import './Select.scss'
 interface SelectProps {
   name?: string;
   label?: string;
-  inputType: string;
   placeholder?: string;
   validateMessage?: string;
   requiredMessage?: string;
@@ -25,6 +24,7 @@ const Select: React.FC<SelectProps> = (props) => {
     <Input
       name={props.name}
       label={props.label}
+      inputType="text"
       inputType={props.inputType}
       placeholder={props.placeholder}
       validateMessage={props.validateMessage}

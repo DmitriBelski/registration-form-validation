@@ -26,6 +26,7 @@ class Input extends React.Component<InputProps> {
           value={this.props.value}
           onChange={this.props.onInputChange}
           onClick={this.props.onClick}
+          readOnly={!this.props.onInputChange}
         />
         <span className="input-group__message text-danger" hidden={!this.props.validateMessage}>
           {this.props.validateMessage}

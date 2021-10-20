@@ -97,7 +97,6 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
         <Select
           name="language"
           label="Язык"
-          inputType="text"
           placeholder="Язык"
           validateMessage="Выберите язык"
         >
