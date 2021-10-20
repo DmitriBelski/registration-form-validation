@@ -6,6 +6,7 @@ import { Input } from 'components/Input'
 import { Name, Email, Phone, Required, validationMessages } from 'validation/validation'
 import { classnames } from 'utils/classnames'
 import { Bind } from 'utils/bind'
+import Option from 'components/Option'
 
 interface RegistrationFormState {
   name: string,
