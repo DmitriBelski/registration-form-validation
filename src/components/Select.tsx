@@ -21,6 +21,14 @@ const filterOptions = (children: React.ReactNode): React.FunctionComponentElemen
 const Select: React.FC<SelectProps> = (props) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const [currentElementIndex, setCurrentElementIndex] = React.useState(0)
+  const liRef = React.useRef<HTMLLIElement[]>([])
+
+  React.useEffect(() => {
+    liRef.current[currentElementIndex]?.scrollIntoView({
+      block: 'center',
+      behavior: 'smooth'
+    })
+  }, [currentElementIndex])
 
   const chooseOption = (value: string) => {
     setIsOpen(false)
@@ -31,7 +39,7 @@ const Select: React.FC<SelectProps> = (props) => {
     const children = filterOptions(props.children)
 
     return React.Children.map(children, (child, index) => {
-      const additionalProps: Pick<OptionProps, 'onClick' | 'onHover' | 'isSelected' | 'isHighlighted'> = {
+      const additionalProps: Pick<OptionProps, 'onClick' | 'onHover' | 'onRef' | 'isSelected' | 'isHighlighted'> = {
         onClick: (event) => {
           event.preventDefault()
           chooseOption(child.props.value)
@@ -39,6 +47,7 @@ const Select: React.FC<SelectProps> = (props) => {
         onHover: () => {
           setCurrentElementIndex(index)
         },
+        onRef: (ref) => liRef.current.push(ref),
         isSelected: child.props.value === props.value,
         isHighlighted: index === currentElementIndex
       }

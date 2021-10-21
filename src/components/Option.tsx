@@ -5,6 +5,7 @@ import './Option.scss'
 export interface OptionProps {
   onClick?: (value: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
   onHover?: () => void;
+  onRef?: (ref: HTMLLIElement) => void;
   isSelected?: boolean;
   isHighlighted?: boolean;
   value: string;
@@ -24,6 +25,7 @@ const Option: React.FC<OptionProps> = (props) => {
 
   return (
     <li className={optionClass}
+      ref={props.onRef}
       onClick={props.onClick}
       onMouseEnter={props.onHover}
     >
