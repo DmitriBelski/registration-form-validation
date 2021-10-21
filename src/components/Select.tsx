@@ -2,6 +2,7 @@ import * as React from 'react'
 import { classnames } from 'utils/classnames'
 import { Input } from './Input'
 import { isOption, OptionProps } from './Option'
+import { useClickOutside } from 'hooks/useClickOutside'
 import './Select.scss'
 
 interface SelectProps {
@@ -22,6 +23,7 @@ const Select: React.FC<SelectProps> = (props) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const [currentElementIndex, setCurrentElementIndex] = React.useState(0)
   const liRef = React.useRef<HTMLLIElement[]>([])
+  const rootRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     liRef.current[currentElementIndex]?.scrollIntoView({
@@ -29,6 +31,8 @@ const Select: React.FC<SelectProps> = (props) => {
       behavior: 'smooth'
     })
   }, [currentElementIndex])
+
+  useClickOutside(rootRef, () => setIsOpen(false))
 
   const chooseOption = (value: string) => {
     setIsOpen(false)
@@ -110,7 +114,7 @@ const Select: React.FC<SelectProps> = (props) => {
       onClick={() => setIsOpen(!isOpen)}
       onKeyDown={handleKeyDown}
     >
-      <div className={dropdownClass}>
+      <div className={dropdownClass} ref={rootRef}>
         {props.children && (
           <div className="select__dropdown">
             <ul className="select__dropdown-list">
