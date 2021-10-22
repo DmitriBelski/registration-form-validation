@@ -34,7 +34,7 @@ const Select: React.FC<SelectProps> = (props) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
   const [currentElementIndex, setCurrentElementIndex] = React.useState<number>(0)
   const liRef = React.useRef<HTMLLIElement[]>([])
-  const rootRef = React.useRef<HTMLDivElement>(null)
+  const rootRef = React.useRef<HTMLLabelElement>(null)
 
   React.useEffect(() => {
     liRef.current[currentElementIndex]?.scrollIntoView({
@@ -136,8 +136,9 @@ const Select: React.FC<SelectProps> = (props) => {
       onInputChange={(event) => setSearched(String(event.target.value))}
       autoComplete="off"
       readOnly={!isOpen}
+      inputRef={rootRef}
     >
-      <div className={dropdownClass} ref={rootRef}>
+      <div className={dropdownClass}>
         {props.children && (
           <div className="select__dropdown">
             <ul className="select__dropdown-list">

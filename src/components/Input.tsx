@@ -14,11 +14,12 @@ interface InputProps {
   children?: React.ReactNode;
   onClick?: () => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  inputRef?: React.LegacyRef<HTMLLabelElement>;
 }
 
 const Input: React.FC<InputProps> = (props) => {
   return (
-    <label className="input-group form__group">
+    <label className="input-group form__group" ref={props.inputRef}>
       <span className="input-group__label text-label-regular">{props.label}</span>
       <input
         className="input-group__input input text-input"
