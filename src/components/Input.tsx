@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { classnames } from 'utils/classnames'
 import './Input.scss'
 
 interface InputProps {
@@ -15,12 +16,20 @@ interface InputProps {
   onClick?: () => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   inputRef?: React.LegacyRef<HTMLLabelElement>;
+  isRequired?: true;
 }
 
 const Input: React.FC<InputProps> = (props) => {
+  const labelClass = classnames({
+    'input-group__label': true,
+    'input-group__label--required': Boolean(props.isRequired)
+  })
+
   return (
     <label className="input-group form__group" ref={props.inputRef}>
-      <span className="input-group__label text-label-regular">{props.label}</span>
+      <div className={labelClass}>
+        <span className="text-label-regular">{props.label}</span>
+      </div>
       <input
         className="input-group__input input text-input"
         name={props.name}

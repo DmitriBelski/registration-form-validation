@@ -14,6 +14,7 @@ interface SelectProps {
   children?: React.ReactNode;
   value?: string;
   onOptionClick: (value: string) => void;
+  isRequired?: true
 }
 
 const filterOptions = (children: React.ReactNode): React.FunctionComponentElement<OptionProps>[] => React.Children.toArray(children)
@@ -137,6 +138,7 @@ const Select: React.FC<SelectProps> = (props) => {
       autoComplete="off"
       readOnly={!isOpen}
       inputRef={rootRef}
+      isRequired={props.isRequired}
     >
       <div className={dropdownClass}>
         {props.children && (

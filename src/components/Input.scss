@@ -7,6 +7,11 @@
 
   &__label {
     margin-bottom: 7px;
+    &--required > span::after {
+      content: '*';
+      margin-left: 3px;
+      color: $color-danger;
+    }
   }
 
   &__message {

@@ -76,6 +76,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           validateMessage={messages?.name}
           onInputChange={(event) => this.setState({ name: event.target.value })}
           value={this.state.name}
+          isRequired
         />
         <Input
           name="email"
@@ -85,6 +86,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           validateMessage={messages?.email}
           onInputChange={(event) => this.setState({ email: event.target.value })}
           value={this.state.email}
+          isRequired
         />
         <Input
           name="phone"
@@ -94,6 +96,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           validateMessage={messages?.phone}
           onInputChange={(event) => this.setState({ phone: String(event.target.value) })}
           value={this.state.phone}
+          isRequired
         />
         <Select
           name="language"
@@ -102,6 +105,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           validateMessage={messages?.language}
           value={this.state.language ?? ''}
           onOptionClick={(language) => this.setState({ language })}
+          isRequired
         >
           {languages.map((language) => <Option key={language.code} value={language.value}>{language.value}</Option>)}
         </Select>
