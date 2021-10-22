@@ -16,30 +16,28 @@ interface InputProps {
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-class Input extends React.Component<InputProps> {
-  render() {
-    return (
-      <label className="input-group form__group">
-        <span className="input-group__label text-label-regular">{this.props.label}</span>
-        <input
-          className="input-group__input input text-input"
-          name={this.props.name}
-          type={this.props.inputType}
-          placeholder={this.props.placeholder}
-          value={this.props.value}
-          onChange={this.props.onInputChange}
-          onClick={this.props.onClick}
-          onKeyDown={this.props.onKeyDown}
-          readOnly={this.props.readOnly}
-          autoComplete={this.props.autoComplete}
-        />
-        <span className="input-group__message text-danger" hidden={!this.props.validateMessage}>
-          {this.props.validateMessage}
-        </span>
-        {this.props.children}
-      </label>
-    )
-  }
+const Input: React.FC<InputProps> = (props) => {
+  return (
+    <label className="input-group form__group">
+      <span className="input-group__label text-label-regular">{props.label}</span>
+      <input
+        className="input-group__input input text-input"
+        name={props.name}
+        type={props.inputType}
+        placeholder={props.placeholder}
+        value={props.value}
+        onChange={props.onInputChange}
+        onClick={props.onClick}
+        onKeyDown={props.onKeyDown}
+        readOnly={props.readOnly}
+        autoComplete={props.autoComplete}
+      />
+      <span className="input-group__message text-danger" hidden={!props.validateMessage}>
+        {props.validateMessage}
+      </span>
+      {props.children}
+    </label>
+  )
 }
 
 export { Input }
