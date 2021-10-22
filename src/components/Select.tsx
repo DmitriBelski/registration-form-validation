@@ -37,6 +37,13 @@ const Select: React.FC<SelectProps> = (props) => {
   const liRef = React.useRef<HTMLLIElement[]>([])
   const rootRef = React.useRef<HTMLLabelElement>(null)
 
+  const indexByValue = React.useCallback((value: string | undefined): number => {
+    if (!value) return currentElementIndex
+    const children = filterOptions(props.children)
+    const optionValues = React.Children.map(children, (child) => child.props.value)
+    return searchedStringIndex(value, optionValues)
+  }, [props.children, currentElementIndex])
+
   React.useEffect(() => {
     liRef.current[currentElementIndex]?.scrollIntoView({
       block: 'nearest',
@@ -47,14 +54,13 @@ const Select: React.FC<SelectProps> = (props) => {
   useClickOutside(rootRef, () => setIsOpen(false))
 
   React.useEffect(() => {
-    const children = filterOptions(props.children)
-    const array = React.Children.map(children, (child) => child.props.value)
-    setCurrentElementIndex(searchedStringIndex(searched, array))
-  }, [searched, props.children])
+    setCurrentElementIndex(indexByValue(searched))
+  }, [searched, indexByValue])
 
   const chooseOption = (value: string) => {
     setIsOpen(false)
     props.onOptionClick(value)
+    setSearched('')
   }
 
   const renderOptions = () => {
