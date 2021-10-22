@@ -19,20 +19,38 @@ interface SelectProps {
 const filterOptions = (children: React.ReactNode): React.FunctionComponentElement<OptionProps>[] => React.Children.toArray(children)
   .reduce<React.FunctionComponentElement<OptionProps>[]>((acc, node) => isOption(node) ? [...acc, node] : acc, [])
 
+const searchedStringIndex = (search: string, array: string[]): number => {
+  return array.map(item => item
+    .toLowerCase()
+    .indexOf(search?.toLowerCase())
+  )
+    .map((matchIndex) => (matchIndex !== -1 ? matchIndex : array.length))
+    .reduce((bestMatchIndex, current, i, arr) => (
+      current < arr[bestMatchIndex] ? i : bestMatchIndex), 0)
+}
+
 const Select: React.FC<SelectProps> = (props) => {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const [currentElementIndex, setCurrentElementIndex] = React.useState(0)
+  const [searched, setSearched] = React.useState<string>('')
+  const [isOpen, setIsOpen] = React.useState<boolean>(false)
+  const [currentElementIndex, setCurrentElementIndex] = React.useState<number>(0)
+  const [hoverElementIndex, setHoverElementIndex] = React.useState<number>(0)
   const liRef = React.useRef<HTMLLIElement[]>([])
   const rootRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     liRef.current[currentElementIndex]?.scrollIntoView({
       block: 'center',
-      behavior: 'smooth'
+      behavior: searched ? 'auto' : 'smooth'
     })
-  }, [currentElementIndex])
+  }, [currentElementIndex, searched])
 
   useClickOutside(rootRef, () => setIsOpen(false))
+
+  React.useEffect(() => {
+    const children = filterOptions(props.children)
+    const array = React.Children.map(children, (child) => child.props.value)
+    setCurrentElementIndex(searchedStringIndex(searched, array))
+  }, [searched, props.children])
 
   const chooseOption = (value: string) => {
     setIsOpen(false)
@@ -49,11 +67,11 @@ const Select: React.FC<SelectProps> = (props) => {
           chooseOption(child.props.value)
         },
         onHover: () => {
-          setCurrentElementIndex(index)
+          setHoverElementIndex(index)
         },
         onRef: (ref) => liRef.current.push(ref),
         isSelected: child.props.value === props.value,
-        isHighlighted: index === currentElementIndex
+        isHighlighted: index === hoverElementIndex
       }
 
       return React.cloneElement(child, additionalProps)
@@ -87,6 +105,9 @@ const Select: React.FC<SelectProps> = (props) => {
           event.preventDefault()
           chooseOptionByIndex(currentElementIndex)
           return
+        case 'Backspace':
+          props.onOptionClick('')
+          return
         default:
           return
       }
@@ -108,11 +129,14 @@ const Select: React.FC<SelectProps> = (props) => {
       name={props.name}
       label={props.label}
       inputType="text"
-      value={props.value}
+      value={props.value || searched}
       placeholder={props.placeholder}
       validateMessage={props.validateMessage}
       onClick={() => setIsOpen(!isOpen)}
       onKeyDown={handleKeyDown}
+      onInputChange={(event) => setSearched(String(event.target.value))}
+      autoComplete="off"
+      readOnly={!isOpen}
     >
       <div className={dropdownClass} ref={rootRef}>
         {props.children && (

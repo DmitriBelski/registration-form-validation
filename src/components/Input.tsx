@@ -8,6 +8,8 @@ interface InputProps {
   placeholder?: string;
   validateMessage?: string;
   value?: string;
+  autoComplete?: 'on' | 'off';
+  readOnly?: boolean;
   onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   children?: React.ReactNode;
   onClick?: () => void;
@@ -28,7 +30,8 @@ class Input extends React.Component<InputProps> {
           onChange={this.props.onInputChange}
           onClick={this.props.onClick}
           onKeyDown={this.props.onKeyDown}
-          readOnly={!this.props.onInputChange}
+          readOnly={this.props.readOnly}
+          autoComplete={this.props.autoComplete}
         />
         <span className="input-group__message text-danger" hidden={!this.props.validateMessage}>
           {this.props.validateMessage}
