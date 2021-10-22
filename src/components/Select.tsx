@@ -33,13 +33,12 @@ const Select: React.FC<SelectProps> = (props) => {
   const [searched, setSearched] = React.useState<string>('')
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
   const [currentElementIndex, setCurrentElementIndex] = React.useState<number>(0)
-  const [hoverElementIndex, setHoverElementIndex] = React.useState<number>(0)
   const liRef = React.useRef<HTMLLIElement[]>([])
   const rootRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     liRef.current[currentElementIndex]?.scrollIntoView({
-      block: 'center',
+      block: 'nearest',
       behavior: searched ? 'auto' : 'smooth'
     })
   }, [currentElementIndex, searched])
@@ -67,11 +66,11 @@ const Select: React.FC<SelectProps> = (props) => {
           chooseOption(child.props.value)
         },
         onHover: () => {
-          setHoverElementIndex(index)
+          setCurrentElementIndex(index)
         },
         onRef: (ref) => liRef.current.push(ref),
         isSelected: child.props.value === props.value,
-        isHighlighted: index === hoverElementIndex
+        isHighlighted: index === currentElementIndex
       }
 
       return React.cloneElement(child, additionalProps)
