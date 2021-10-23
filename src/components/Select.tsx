@@ -38,12 +38,17 @@ const Select: React.FC<SelectProps> = (props) => {
   const liRef = React.useRef<HTMLLIElement[]>([])
   const rootRef = React.useRef<HTMLLabelElement>(null)
 
-  const indexByValue = React.useCallback((value: string | undefined): number => {
-    if (!value) return currentElementIndex
+  const valueByIndex = React.useCallback((index: number): string | undefined => {
     const children = filterOptions(props.children)
-    const optionValues = React.Children.map(children, (child) => child.props.value)
-    return searchedStringIndex(value, optionValues)
-  }, [props.children, currentElementIndex])
+    const childByIndex = children.find((element, elementIndex) => elementIndex === index)
+    return childByIndex?.props.value
+  }, [props.children])
+
+  const indexByValue = React.useCallback((value: string): number => {
+    const children = filterOptions(props.children)
+    const childValues = React.Children.map(children, (child) => child.props.value)
+    return searchedStringIndex(value, childValues)
+  }, [props.children])
 
   React.useEffect(() => {
     liRef.current[currentElementIndex]?.scrollIntoView({
@@ -55,7 +60,7 @@ const Select: React.FC<SelectProps> = (props) => {
   useClickOutside(rootRef, () => setIsOpen(false))
 
   React.useEffect(() => {
-    setCurrentElementIndex(indexByValue(searched))
+    if (searched) setCurrentElementIndex(indexByValue(searched))
   }, [searched, indexByValue])
 
   const chooseOption = (value: string) => {
@@ -86,12 +91,10 @@ const Select: React.FC<SelectProps> = (props) => {
   }
 
   const chooseOptionByIndex = (index: number) => {
-    const children = filterOptions(props.children)
-    const currentlyHighlightedChild = children.find((element, elementIndex) => elementIndex === index)
-
-    if (currentlyHighlightedChild) {
+    const value = valueByIndex(index)
+    if (value) {
       setIsOpen(false)
-      chooseOption(currentlyHighlightedChild.props.value)
+      chooseOption(value)
     }
   }
 
