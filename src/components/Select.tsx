@@ -10,6 +10,7 @@ interface SelectProps {
   label?: string;
   placeholder?: string;
   validateMessage?: string;
+  doValidate?: boolean;
   requiredMessage?: string;
   children?: React.ReactNode;
   value?: string;
@@ -138,6 +139,7 @@ const Select: React.FC<SelectProps> = (props) => {
       value={props.value || searched}
       placeholder={props.placeholder}
       validateMessage={props.validateMessage}
+      doValidate={props.doValidate}
       onClick={() => setIsOpen(!isOpen)}
       onKeyDown={handleKeyDown}
       onInputChange={(event) => setSearched(String(event.target.value))}

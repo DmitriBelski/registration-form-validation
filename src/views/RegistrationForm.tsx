@@ -15,6 +15,7 @@ interface RegistrationFormState {
   phone: string,
   language: string,
   agreement: boolean,
+  triedSubmitted: boolean
 }
 
 class RegistrationForm extends React.Component<{}, RegistrationFormState> {
@@ -25,7 +26,8 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
       email: '',
       phone: '',
       language: '',
-      agreement: false
+      agreement: false,
+      triedSubmitted: false
     }
   }
 
@@ -35,6 +37,12 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
       const agreement = !prevState.agreement
       return { agreement }
     })
+  }
+
+  @Bind
+  submitHandler(event: React.FormEvent) {
+    event.preventDefault()
+    this.setState({ triedSubmitted: true })
   }
 
   /* @Rule(state.prop, message) */
@@ -74,6 +82,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           inputType="text"
           placeholder="Введите ваше имя"
           validateMessage={messages?.name}
+          doValidate={this.state.triedSubmitted}
           onInputChange={(event) => this.setState({ name: event.target.value })}
           value={this.state.name}
           isRequired
@@ -84,6 +93,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           inputType="email"
           placeholder="Введите ваш email"
           validateMessage={messages?.email}
+          doValidate={this.state.triedSubmitted}
           onInputChange={(event) => this.setState({ email: event.target.value })}
           value={this.state.email}
           isRequired
@@ -94,6 +104,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           inputType="tel"
           placeholder="Введите номер телефона"
           validateMessage={messages?.phone}
+          doValidate={this.state.triedSubmitted}
           onInputChange={(event) => this.setState({ phone: String(event.target.value) })}
           value={this.state.phone}
           isRequired
@@ -103,6 +114,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           label="Язык"
           placeholder="Язык"
           validateMessage={messages?.language}
+          doValidate={this.state.triedSubmitted}
           value={this.state.language ?? ''}
           onOptionClick={(language) => this.setState({ language })}
           isRequired
@@ -116,7 +128,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           <a className="link text-label-accent" href="/" target="_blank">условия</a>
           &nbsp;использования
         </CheckBox>
-        <button className={buttonClass} type="submit">Зарегистрироваться</button>
+        <button className={buttonClass} type="submit" onClick={this.submitHandler}>Зарегистрироваться</button>
       </form>
     )
   }

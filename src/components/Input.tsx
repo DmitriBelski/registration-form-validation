@@ -8,6 +8,7 @@ interface InputProps {
   inputType: string;
   placeholder?: string;
   validateMessage?: string;
+  doValidate?: boolean;
   value?: string;
   autoComplete?: 'on' | 'off';
   readOnly?: boolean;
@@ -20,7 +21,11 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = (props) => {
-  const [beenBlurred, setBeenBlurred] = React.useState<boolean>(false)
+  const [doValidate, setDoValidate] = React.useState<boolean>(false)
+
+  React.useEffect(() => {
+    if (props.doValidate) setDoValidate(props.doValidate)
+  }, [props.doValidate])
 
   const labelClass = classnames({
     'input-group__label': true,
@@ -43,9 +48,9 @@ const Input: React.FC<InputProps> = (props) => {
         onKeyDown={props.onKeyDown}
         readOnly={props.readOnly}
         autoComplete={props.autoComplete}
-        onBlur={() => setBeenBlurred(true)}
+        onBlur={() => setDoValidate(true)}
       />
-      <span className="input-group__message text-danger" hidden={!(beenBlurred && props.validateMessage)}>
+      <span className="input-group__message text-danger" hidden={!(doValidate && props.validateMessage)}>
         <span className="input-group__message-icon"></span>
         {props.validateMessage}
       </span>
