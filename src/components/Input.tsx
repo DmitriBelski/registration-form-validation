@@ -20,6 +20,8 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = (props) => {
+  const [beenBlurred, setBeenBlurred] = React.useState<boolean>(false)
+
   const labelClass = classnames({
     'input-group__label': true,
     'input-group__label--required': Boolean(props.isRequired)
@@ -41,8 +43,9 @@ const Input: React.FC<InputProps> = (props) => {
         onKeyDown={props.onKeyDown}
         readOnly={props.readOnly}
         autoComplete={props.autoComplete}
+        onBlur={() => setBeenBlurred(true)}
       />
-      <span className="input-group__message text-danger" hidden={!props.validateMessage}>
+      <span className="input-group__message text-danger" hidden={!(beenBlurred && props.validateMessage)}>
         {props.validateMessage}
       </span>
       {props.children}
