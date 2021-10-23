@@ -8,6 +8,7 @@ import { classnames } from 'utils/classnames'
 import { Bind } from 'utils/bind'
 import { languages } from 'utils/constant'
 import Option from 'components/Option'
+import { parsePhone } from 'utils/parsephone'
 
 interface RegistrationFormState {
   name: string,
@@ -40,9 +41,18 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
   }
 
   @Bind
-  submitHandler(event: React.FormEvent) {
+  submitHandler(event: React.FormEvent, valid: boolean) {
     event.preventDefault()
-    this.setState({ triedSubmitted: true })
+    if (valid) {
+      console.log(
+        'name:', this.state.name,
+        '\nemail:', this.state.email,
+        '\nphone:', parsePhone(this.state.phone),
+        '\nlanguage:', this.state.language
+      )
+    } else {
+      this.setState({ triedSubmitted: true })
+    }
   }
 
   /* @Rule(state.prop, message) */
@@ -128,7 +138,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           <a className="link text-label-accent" href="/" target="_blank">условия</a>
           &nbsp;использования
         </CheckBox>
-        <button className={buttonClass} type="submit" onClick={this.submitHandler}>Зарегистрироваться</button>
+        <button className={buttonClass} type="submit" onClick={(event) => this.submitHandler(event, valid)}>Зарегистрироваться</button>
       </form>
     )
   }
