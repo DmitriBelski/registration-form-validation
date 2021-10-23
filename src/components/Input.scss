@@ -12,6 +12,9 @@
       margin-left: 3px;
       color: $color-danger;
     }
+    &--required-valid > span::after {
+      color: $color-success;
+    }
   }
 
   &__message {

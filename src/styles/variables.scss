@@ -16,6 +16,7 @@ $color-neutral-dark: #756f86;
 $color-neutral-light: #dbe2ea;
 
 $color-danger: #ff7171;
+$color-success: #2ed064;
 
 /* Transitions */
 @mixin default-transition($property...) {
@@ -33,8 +34,10 @@ $big-border-radius: 24px;
 /* Border shadows */
 $input-regular-border-shadow: inset 0 0 0 1px $color-neutral-light;
 $input-focus-border-shadow: inset 0 0 0 2px $color-accent;
+$input-valid-border-shadow: inset 0 0 0 2px $color-success;
+$input-invalid-border-shadow: inset 0 0 0 2px $color-danger;
 $button-active-border-shadow: inset 0 0 0 2px $color-secondary-86;
-$button-focus-border-shadow: inset 0 0 0 2px $color-danger;
+$button-focus-border-shadow: inset 0 0 0 2px $color-success;
 $link-focus-border-shadow: 0 0 0 2px $color-accent;
 
 /* Box shadows elevations */

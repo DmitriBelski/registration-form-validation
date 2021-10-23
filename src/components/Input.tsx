@@ -29,7 +29,16 @@ const Input: React.FC<InputProps> = (props) => {
 
   const labelClass = classnames({
     'input-group__label': true,
-    'input-group__label--required': Boolean(props.isRequired)
+    'input-group__label--required': Boolean(props.isRequired),
+    'input-group__label--required-valid': Boolean(props.isRequired) && doValidate && !props.validateMessage
+  })
+
+  const inputClass = classnames({
+    'input-group__input': true,
+    input: true,
+    'text-input': true,
+    'input--valid': doValidate && !props.validateMessage,
+    'input--invalid': doValidate && !!props.validateMessage
   })
 
   return (
@@ -38,7 +47,7 @@ const Input: React.FC<InputProps> = (props) => {
         <span className="text-label-regular">{props.label}</span>
       </div>
       <input
-        className="input-group__input input text-input"
+        className={inputClass}
         name={props.name}
         type={props.inputType}
         placeholder={props.placeholder}

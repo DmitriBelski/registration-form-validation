@@ -7,7 +7,7 @@
   color: $color-accent-contrast;
   border-radius: $default-border-radius;
   box-shadow: $button-box-shadow;
-  @include default-transition(box-shadow);
+  @include default-transition(box-shadow, background-color);
 
   &:hover {
     box-shadow: $button-hover-box-shadow;
@@ -52,6 +52,14 @@
   border: none;
   border-radius: $default-border-radius;
   box-shadow: $input-regular-border-shadow, $input-box-shadow;
+
+  &--valid {
+    box-shadow: $input-valid-border-shadow, $input-box-shadow;
+  }
+
+  &--invalid {
+    box-shadow: $input-invalid-border-shadow, $input-box-shadow;
+  }
 
   &:focus {
     outline: none;
