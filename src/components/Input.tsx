@@ -46,6 +46,7 @@ const Input: React.FC<InputProps> = (props) => {
         onBlur={() => setBeenBlurred(true)}
       />
       <span className="input-group__message text-danger" hidden={!(beenBlurred && props.validateMessage)}>
+        <span className="input-group__message-icon"></span>
         {props.validateMessage}
       </span>
       {props.children}

@@ -17,5 +17,24 @@
   &__message {
     position: absolute;
     bottom: -26px;
+      &-icon {
+        margin-right: 8px;
+        position: relative;
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          border-radius: 2px;
+          background-color: $color-danger;
+          transform: rotate(45deg);
+        }
+        &::after {
+          position: absolute;
+          right: 3px;
+          content: '!';
+          color: white;
+      }
+    }
   }
-}
+} 
