@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/registration-form-validation/static/css/main.23e4e18b.chunk.css",
+    "main.js": "/registration-form-validation/static/js/main.a39e701c.chunk.js",
+    "main.js.map": "/registration-form-validation/static/js/main.a39e701c.chunk.js.map",
+    "runtime-main.js": "/registration-form-validation/static/js/runtime-main.5487ad5f.js",
+    "runtime-main.js.map": "/registration-form-validation/static/js/runtime-main.5487ad5f.js.map",
+    "static/js/2.dbd55dc4.chunk.js": "/registration-form-validation/static/js/2.dbd55dc4.chunk.js",
+    "static/js/2.dbd55dc4.chunk.js.map": "/registration-form-validation/static/js/2.dbd55dc4.chunk.js.map",
+    "index.html": "/registration-form-validation/index.html",
+    "static/css/main.23e4e18b.chunk.css.map": "/registration-form-validation/static/css/main.23e4e18b.chunk.css.map",
+    "static/js/2.dbd55dc4.chunk.js.LICENSE.txt": "/registration-form-validation/static/js/2.dbd55dc4.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/registration-form-validation/static/media/IBMPlexSans-Regular.1525928a.ttf",
+    "static/media/Select.scss": "/registration-form-validation/static/media/bottom-arrow-chevron.422a7944.svg",
+    "static/media/CheckBox.scss": "/registration-form-validation/static/media/checked.be1d87d9.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5487ad5f.js",
+    "static/js/2.dbd55dc4.chunk.js",
+    "static/css/main.23e4e18b.chunk.css",
+    "static/js/main.a39e701c.chunk.js"
+  ]
+}
