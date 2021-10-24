@@ -1,7 +1,22 @@
 {
-  "name": "amigo-registration",
+  "name": "registration-form-validation",
   "version": "0.1.0",
+  "author": "Dmitry Belsky <belskiy.dmitriy@gmail.com>",
+  "description": "Registration form ReactJS component with TypeScript decorators",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitriBelski/registration-form-validation.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "ReactJS",
+    "React",
+    "TypeScript",
+    "Validation"
+  ],
+  "license": "ISC",
+  "homepage": "https://dmitribelski.github.io/registration-form-validation/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
