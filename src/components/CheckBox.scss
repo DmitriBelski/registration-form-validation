@@ -4,7 +4,7 @@
   $self: &;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-xs);
   padding: 2px 0 5px 0;
   cursor: pointer;
 
@@ -16,8 +16,8 @@
   }
 
   &__box {
-    width: 28px;
-    height: 28px;
+    width: calc(1.4*var(--space-md));
+    height: calc(1.4*var(--space-md));
     background-color: $color-secondary-contrast;
     box-shadow: $input-box-shadow, $input-regular-border-shadow;
     border-radius: $small-border-radius;
@@ -30,7 +30,7 @@
     }
 
     #{$self}__input:checked + & {
-      background-size: 16px 12px;
+      background-size: calc(1.3*var(--space-sm)) var(--space-md);
       @include default-transition(background-size);
     }
   }

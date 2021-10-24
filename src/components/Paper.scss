@@ -12,6 +12,6 @@
   background-color: $color-secondary-contrast;
 
   &__form {
-    padding: 40px 30px;
+    padding: calc(1.25*var(--space-lg)) calc(0.93*var(--space-lg));
   }
 }

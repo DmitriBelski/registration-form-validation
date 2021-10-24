@@ -6,7 +6,7 @@
   position: relative;
 
   &__label {
-    margin-bottom: 7px;
+    margin-bottom: calc(0.875*var(--space-xs));
     &--required > span::after {
       content: '*';
       margin-left: 3px;
@@ -19,8 +19,9 @@
 
   &__message {
     position: absolute;
-    bottom: -26px;
-      &-icon {
+    bottom: calc(-1.3*var(--space-md));
+    &-icon {
+      @include breakpoint(min-extra-small) {
         margin-right: 8px;
         position: relative;
         &::before {
@@ -37,6 +38,7 @@
           right: 3px;
           content: '!';
           color: white;
+        }
       }
     }
   }

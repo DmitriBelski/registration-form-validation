@@ -9,11 +9,14 @@
     content: '';
     width: 16px;
     height: 9px;
-    background-image: url(../assets/images/bottom-arrow-chevron.svg);
+    background: url(../assets/images/bottom-arrow-chevron.svg) center center no-repeat;
     position: absolute;
     top: -30px;
     right: 18px;
     @include default-transition(transform);
+    @include breakpoint(max-extra-small) {
+      height: 13px;
+    }
   }
 
   &__dropdown {

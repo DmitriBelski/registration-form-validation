@@ -56,3 +56,47 @@ $button-disable-box-shadow: $elevation-s $color-secondary-08;
 $input-box-shadow: $elevation-s $color-secondary-04;
 $dropdown-box-shadow: $elevation-s $color-secondary-04, $elevation-l-extra $color-secondary-04;
 $paper-box-shadow: $elevation-m $color-secondary-02, $elevation-xl $color-secondary-04;
+
+/* Breakpoints */
+$breakpoints: (
+  'min-extra-small': ( min-width: 450px ),
+  'min-small': ( min-width: 767px ),
+  'min-medium': ( min-width: 992px ),
+  'min-large': ( min-width: 1200px ),
+  'max-extra-small': ( max-width: 450px ),
+  'max-small': ( min-width: 767px ),
+  'max-medium': ( min-width: 992px ),
+  'max-large': ( min-width: 1200px )
+) !default;
+
+@mixin breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+ 
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+/* spaces */
+:root {
+  // These are important in runtime, therefore we use css variables instead of sass ones
+  --space-unit: 1em;
+  --space-xxs:  calc(0.25 * var(--space-unit)); // 4px
+  --space-xs:   calc(0.5 * var(--space-unit));  // 8px
+  --space-sm:   calc(0.75 * var(--space-unit)); // 12px
+  --space-md:   calc(1.25 * var(--space-unit)); // 20px
+  --space-lg:   calc(2 * var(--space-unit));    // 32px
+  --space-xl:   calc(3.25 * var(--space-unit)); // 52px
+  --space-xxl:  calc(5.25 * var(--space-unit)); // 84px
+}
+
+@include breakpoint(max-extra-small) {
+  :root {
+    --space-unit: 0.8em;
+  }
+}

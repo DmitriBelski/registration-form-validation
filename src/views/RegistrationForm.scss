@@ -5,11 +5,11 @@
   flex-direction: column;
 
   &__header {
-    margin-bottom: 58px;
+    margin-bottom: calc(1.12*var(--space-lg));
   }
 
   &__group {
-    margin-bottom: 34px;
+    margin-bottom: var(--space-lg);
   }
 }
 

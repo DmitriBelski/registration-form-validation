@@ -1,7 +1,7 @@
 @import 'styles/variables.scss';
 
 .select-option {
-  padding: 12px 16px;
+  padding: var(--space-sm) calc(1.33*var(--space-sm));
   cursor: pointer;
   list-style-type: none;
 

@@ -1,8 +1,9 @@
 @import './variables.scss';
 @import './typography.scss';
+// calc(var(--space-sm))
 
 .button {
-  padding: 16px;
+  padding: calc(1.33*var(--space-sm));
   background-color: $color-accent;
   color: $color-accent-contrast;
   border-radius: $default-border-radius;
@@ -52,6 +53,9 @@
   border: none;
   border-radius: $default-border-radius;
   box-shadow: $input-regular-border-shadow, $input-box-shadow;
+  @include breakpoint(max-extra-small) {
+    padding: 13px 50px 13px 13px;
+  }
 
   &--valid {
     box-shadow: $input-valid-border-shadow, $input-box-shadow;
