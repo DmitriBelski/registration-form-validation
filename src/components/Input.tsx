@@ -44,7 +44,7 @@ const Input: React.FC<InputProps> = (props) => {
   return (
     <label className="input-group form__group" ref={props.inputRef}>
       <div className={labelClass}>
-        <span className="text-label-regular">{props.label}</span>
+        <span className="text-label">{props.label}</span>
       </div>
       <input
         className={inputClass}

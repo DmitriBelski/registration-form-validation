@@ -40,14 +40,9 @@
   color: $color-secondary;
 }
 
-.text-subtitle-regular {
+.text-subtitle {
   @extend %subtitle;
   color: $color-secondary;
-}
-
-.text-subtitle-accent {
-  @extend %subtitle;
-  color: $color-accent;
 }
 
 .text-button-regular {
@@ -60,14 +55,9 @@
   color: $color-secondary-50;
 }
 
-.text-label-regular {
+.text-label {
   @extend %button-label;
   color: $color-neutral-dark;
-}
-
-.text-label-accent {
-  @extend %button-label;
-  color: $color-accent;
 }
 
 .text-placeholder {

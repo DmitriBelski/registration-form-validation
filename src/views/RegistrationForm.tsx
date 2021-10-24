@@ -58,12 +58,12 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
   /* @Rule(state.prop, message) */
   @Required('agreement', '')
   @Required('language', 'Выберите язык')
-  @Name('name', 'Введено не корректное значение для имени')
+  @Name('name', 'Введено не корректное имя')
   @Required('name', 'Поле имя не может быть пустым')
-  @Email('email', 'Введено не корректное значение для email')
+  @Email('email', 'Введен не корректный email')
   @Required('email', 'Поле email не может быть пустым')
-  @Phone('phone', 'Введено не корректное значение для номера телефона')
-  @Required('phone', 'Поле номер телефона не может быть пустым')
+  @Phone('phone', 'Введен не корректный номера телефона')
+  @Required('phone', 'Укажите номер телефона')
   render() {
     const messages = validationMessages(this)
     const valid = !messages
@@ -79,9 +79,9 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
       <form className="form">
         <div className="header form__header">
           <h1 className="header__title text-title-regular">Регистрация</h1>
-          <span className="header__subtitle text-subtitle-regular">
+          <span className="header__subtitle text-subtitle">
             Уже есть аккаунт?
-            <a className="header__subtitle-link link text-subtitle-accent" href="/" target="_blank">
+            <a className="header__subtitle-link link" href="/" target="_blank">
               Войти
             </a>
           </span>
@@ -135,7 +135,7 @@ class RegistrationForm extends React.Component<{}, RegistrationFormState> {
           onInputChange={this.handleCheckboxChange}
         >
           Принимаю&nbsp;
-          <a className="link text-label-accent" href="/" target="_blank">условия</a>
+          <a className="link" href="/" target="_blank">условия</a>
           &nbsp;использования
         </CheckBox>
         <button className={buttonClass} type="submit" onClick={(event) => this.submitHandler(event, valid)}>Зарегистрироваться</button>
